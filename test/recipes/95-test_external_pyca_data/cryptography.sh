@@ -35,9 +35,9 @@ echo "------------------------------------------------------------------"
 cd $SRCTOP
 
 # Create a python virtual env and activate
-rm -rf venv-pycrypto
-virtualenv venv-pycrypto
-. ./venv-pycrypto/bin/activate
+rm -rf venv-cryptography
+virtualenv venv-cryptography
+. ./venv-cryptography/bin/activate
 
 cd pyca-cryptography
 
@@ -58,7 +58,7 @@ CFLAGS="-I$O_BINC -I$O_SINC -L$O_LIB" python ./setup.py test
 
 cd ../
 deactivate
-rm -rf venv-pycrypto
+rm -rf venv-cryptography
 
 exit 0
 
