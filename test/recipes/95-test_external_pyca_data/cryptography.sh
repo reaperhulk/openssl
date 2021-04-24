@@ -36,7 +36,7 @@ cd $SRCTOP
 
 # Create a python virtual env and activate
 rm -rf venv-cryptography
-virtualenv venv-cryptography
+python -m venv venv-cryptography
 . ./venv-cryptography/bin/activate
 
 cd pyca-cryptography
@@ -46,15 +46,13 @@ pip install .[test]
 echo "------------------------------------------------------------------"
 echo "Building cryptography"
 echo "------------------------------------------------------------------"
-python ./setup.py clean
-
-CFLAGS="-I$O_BINC -I$O_SINC -L$O_LIB" python ./setup.py build
+CFLAGS="-I$O_BINC -I$O_SINC -L$O_LIB" pip install .
 
 echo "------------------------------------------------------------------"
 echo "Running tests"
 echo "------------------------------------------------------------------"
 
-CFLAGS="-I$O_BINC -I$O_SINC -L$O_LIB" python ./setup.py test
+CFLAGS="-I$O_BINC -I$O_SINC -L$O_LIB" pytest -n auto tests --wycheproof-root=../wycheproof
 
 cd ../
 deactivate
